@@ -2,6 +2,7 @@ import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import { IEvent } from "@/database/event.model";
 import { cacheLife } from "next/cache";
+import events from "@/lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 console.log("BASE_URL ==========", BASE_URL);
@@ -10,11 +11,11 @@ const Page = async () => {
   "use cache";
   cacheLife("hours");
 
-  const response = await fetch(`${BASE_URL}/api/events`);
+  // const response = await fetch(`${BASE_URL}/api/events`);
 
-  console.log("Content-Type ==========", response.headers.get("content-type"));
+  // console.log("Content-Type ==========", response.headers.get("content-type"));
 
-  const { events } = await response.json();
+  // const { events } = await response.json();
 
   return (
     <section>
