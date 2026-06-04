@@ -20,7 +20,7 @@ const Page = async () => {
         Hackathons, Meetups and Conferences, All in One Place
       </p>
 
-      <ExploreBtn />
+      {/* <ExploreBtn /> */}
 
       <div className="mt-20 space-y-7">
         <h3>Featured Events</h3>
