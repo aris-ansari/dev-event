@@ -54,11 +54,6 @@ const EventDetails = async ({
   const { slug } = await params;
 
   const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-  // const request = await fetch(`${BASE_URL}/api/events/${slug}`, {
-  //   next: {
-  //     revalidate: 3600,
-  //   },
-  // });
   const {
     event: {
       title,
