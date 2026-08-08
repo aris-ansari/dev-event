@@ -1,9 +1,9 @@
 // lib/mongodb.ts
+import dns from "node:dns/promises";
+
+dns.setServers(["8.8.8.8"]);
 
 import mongoose from "mongoose";
-import dns from "node:dns";
-
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 /**
  * MongoDB connection string from environment variables.
@@ -54,23 +54,20 @@ if (!global.mongooseCache) {
  * during API route reloads in development.
  */
 async function connectDB(): Promise<typeof mongoose> {
-  // Return existing connection if already connected
   if (cached.conn) {
     return cached.conn;
   }
 
-  // Create a new connection promise if it doesn't exist
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI).then((mongooseInstance) => {
+      console.log("MongoDB database:", mongooseInstance.connection.name);
       return mongooseInstance;
     });
   }
 
   try {
-    // Await the connection and cache it
     cached.conn = await cached.promise;
   } catch (error) {
-    // Reset promise if connection fails
     cached.promise = null;
     throw error;
   }
